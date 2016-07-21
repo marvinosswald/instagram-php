@@ -1,0 +1,24 @@
+{
+    "name": "marvinosswald/instagram-php",
+    "description": "PHP Api Wrapper for Instagram",
+    "type": "libary",
+    "require": {
+        "guzzlehttp/guzzle": "^6.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^5.4",
+        "vlucas/phpdotenv": "^2.3"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Marvin Oßwald",
+            "email": "marvin.osswald@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "marvinosswald\\Instagram\\" : "src/"
+        }
+    }
+}

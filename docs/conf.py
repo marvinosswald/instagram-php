@@ -55,8 +55,8 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'Laravel PHP'
-copyright = '2016, Marvin Oßwald'
-author = 'Marvin Oßwald'
+copyright = '2016, Marvin Osswald'
+author = 'Marvin Osswald'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the

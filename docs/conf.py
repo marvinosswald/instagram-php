@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# Laravel PHP documentation build configuration file, created by
-# sphinx-quickstart on Thu Jul 21 15:01:18 2016.
+# Instagram PHP documentation build configuration file, created by
+# sphinx-quickstart on Thu Jul 21 15:28:11 2016.
 #
 # This file is execfile()d with the current directory set to its
 # containing dir.
@@ -20,8 +20,6 @@
 # import os
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
-from recommonmark.parser import CommonMarkParser
-import sphinx_rtd_theme
 
 # -- General configuration ------------------------------------------------
 
@@ -41,10 +39,7 @@ templates_path = ['_templates']
 # You can specify multiple suffix as a list of string:
 #
 # source_suffix = ['.rst', '.md']
-source_parsers = {
-    '.md': CommonMarkParser,
-}
-source_suffix = '.md'
+source_suffix = '.rst'
 
 # The encoding of source files.
 #
@@ -54,7 +49,7 @@ source_suffix = '.md'
 master_doc = 'index'
 
 # General information about the project.
-project = 'Laravel PHP'
+project = 'Instagram PHP'
 copyright = '2016, Marvin Osswald'
 author = 'Marvin Osswald'
 
@@ -125,7 +120,7 @@ todo_include_todos = False
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'sphinx_rtd_theme'
+html_theme = 'alabaster'
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
@@ -134,12 +129,12 @@ html_theme = 'sphinx_rtd_theme'
 # html_theme_options = {}
 
 # Add any paths that contain custom themes here, relative to this directory.
-html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
+# html_theme_path = []
 
 # The name for this set of Sphinx documents.
 # "<project> v<release> documentation" by default.
 #
-# html_title = 'Laravel PHP v1.0.0'
+# html_title = 'Instagram PHP v1.0.0'
 
 # A shorter title for the navigation bar.  Default is the same as html_title.
 #
@@ -239,7 +234,7 @@ html_static_path = ['_static']
 # html_search_scorer = 'scorer.js'
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'LaravelPHPdoc'
+htmlhelp_basename = 'InstagramPHPdoc'
 
 # -- Options for LaTeX output ---------------------------------------------
 
@@ -265,7 +260,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'LaravelPHP.tex', 'Laravel PHP Documentation',
+    (master_doc, 'InstagramPHP.tex', 'Instagram PHP Documentation',
      'Marvin Osswald', 'manual'),
 ]
 
@@ -307,7 +302,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'laravelphp', 'Laravel PHP Documentation',
+    (master_doc, 'instagramphp', 'Instagram PHP Documentation',
      [author], 1)
 ]
 
@@ -322,8 +317,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'LaravelPHP', 'Laravel PHP Documentation',
-     author, 'LaravelPHP', 'One line description of project.',
+    (master_doc, 'InstagramPHP', 'Instagram PHP Documentation',
+     author, 'InstagramPHP', 'One line description of project.',
      'Miscellaneous'),
 ]
 

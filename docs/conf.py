@@ -266,7 +266,7 @@ latex_elements = {
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
     (master_doc, 'LaravelPHP.tex', 'Laravel PHP Documentation',
-     'Marvin Oßwald', 'manual'),
+     'Marvin Osswald', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of

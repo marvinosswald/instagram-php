@@ -8,7 +8,7 @@ page.
 
 
 Access Instagram API
-================
+====================
 
 You can send requests with the SDK using a ``marvinosswald\Instagram\Instagram``
 object.
@@ -27,7 +27,7 @@ Creating a Client
 The client constructor accepts an ACCESS_TOKEN string
 
 Access Media Endpoint
-----------------
+---------------------
 
 .. code-block:: php
 

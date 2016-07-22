@@ -22,6 +22,11 @@
 # sys.path.insert(0, os.path.abspath('.'))
 import sphinx_rtd_theme
 from recommonmark.parser import CommonMarkParser
+from sphinx.highlighting import lexers
+from pygments.lexers.web import PhpLexer
+lexers['php'] = PhpLexer(startinline=True, linenos=1)
+lexers['php-annotations'] = PhpLexer(startinline=True, linenos=1)
+primary_domain = 'php'
 
 # -- General configuration ------------------------------------------------
 
@@ -40,10 +45,11 @@ templates_path = ['_templates']
 # The suffix(es) of source filenames.
 # You can specify multiple suffix as a list of string:
 #
-source_parsers = {
-    '.md': CommonMarkParser,
-}
-source_suffix = ['.rst', '.md']
+#source_parsers = {
+#    '.md': CommonMarkParser,
+#}
+#source_suffix = ['.rst','.md']
+source_suffix = ['.rst']
 
 # The encoding of source files.
 #
@@ -51,11 +57,6 @@ source_suffix = ['.rst', '.md']
 
 # The master toctree document.
 master_doc = 'index'
-from sphinx.highlighting import lexers
-from pygments.lexers.web import PhpLexer
-lexers['php'] = PhpLexer(startinline=True, linenos=1)
-lexers['php-annotations'] = PhpLexer(startinline=True, linenos=1)
-primary_domain = 'php'
 # General information about the project.
 project = 'Instagram PHP'
 copyright = '2016, Marvin Osswald'

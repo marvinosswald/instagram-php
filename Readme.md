@@ -3,6 +3,8 @@
 [![Build Status](https://travis-ci.org/marvinosswald/instagram-php.svg?branch=master)](https://travis-ci.org/marvinosswald/instagram-php)
 [![MIT License](https://img.shields.io/packagist/l/marvinosswald/laravel-socialmedia.svg?style=flat-square)](https://packagist.org/packages/marvinosswald/laravel-socialmedia)
 
+**DISCLAIMER:** This is not an offical SDK by Instagram
+
 ## Requirements
 
 - PHP 5.6 or higher
@@ -10,4 +12,7 @@
 
 ## Dependencies
 - Guzzle
+
+## [Documentation](http://instagram-php-sdk.readthedocs.io/en/latest/)
+I'm like the worst writer ever... So please feel free to improve it !
 

@@ -7,7 +7,7 @@ use marvinosswald\Instagram\Instagram;
  * Class Media
  * @package marvinosswald\Instagram
  */
-class Location {
+class location {
     /**
      * @var Instagram
      */
@@ -19,7 +19,11 @@ class Location {
     /**
      * @var
      */
-    public $data;
+    protected $data;
+    /**
+     * @var
+     */
+    public $meta;
     /**
      *
      */
@@ -41,7 +45,10 @@ class Location {
         if ($id){
             $this->id = $id;
         }
-        return $this->instagram->get(Location::API_SEGMENT.$this->id);
+        $res = $this->instagram->get(Location::API_SEGMENT.$this->id);
+        $this->data = $res->data;
+        $this->meta = $res->meta;
+        return $this;
     }
 
     /**
@@ -54,10 +61,17 @@ class Location {
         if(!$this->id){
             return "No Location id set";
         }
-        return $this->instagram->get(Location::API_SEGMENT.$this->id.'/media/recent',[
+        $res = $this->instagram->get(Location::API_SEGMENT.$this->id.'/media/recent',[
             'min_tag_id' => $minTagId,
             'max_tag_id' => $maxTagId
         ]);
+        $arr = [];
+        foreach ($res->data as $item){
+            $tag = new Media($this->instagram,$item->id);
+            $tag->setData($item);
+            array_push($arr,$tag);
+        }
+        return $arr;
     }
 
     /**
@@ -68,11 +82,18 @@ class Location {
      */
     public function searchByCoordinates($lat, $lng, $distance=500)
     {
-        return $this->instagram->get(Location::API_SEGMENT.'search',[
+        $res = $this->instagram->get(Location::API_SEGMENT.'search',[
             'lat' => $lat,
             'lng' => $lng,
             'distance' => $distance
         ]);
+        $arr = [];
+        foreach ($res->data as $item){
+            $tag = new Location($this->instagram,$item->id);
+            $tag->setData($item);
+            array_push($arr,$tag);
+        }
+        return $arr;
     }
 
     /**
@@ -82,9 +103,46 @@ class Location {
      */
     public function searchByFbPlacesId($fb_places_id='',$distance=500)
     {
-        return $this->instagram->get(Location::API_SEGMENT.'search',[
+        $res = $this->instagram->get(Location::API_SEGMENT.'search',[
             'facebook_places_id' => $fb_places_id,
             'distance' => $distance
         ]);
+        $arr = [];
+        foreach ($res->data as $item){
+            $tag = new Location($this->instagram,$item->id);
+            $tag->setData($item);
+            array_push($arr,$tag);
+        }
+        return $arr;
+    }
+    /**
+     * @param $name
+     * @return null
+     */
+    public function __get($name)
+    {
+        if (isset($this->data->{$name})) {
+            return $this->data->{$name};
+        }
+        trigger_error(
+            'Undefined Property for: ' . $name,
+            E_USER_NOTICE);
+        return null;
+    }
+
+    /**
+     * @param $data
+     */
+    public function setData($data)
+    {
+        $this->data = $data;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRawData()
+    {
+        return $this->data;
     }
 }

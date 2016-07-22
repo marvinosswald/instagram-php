@@ -1,0 +1,810 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Endpoints &mdash; Instagram PHP 0.1.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="Instagram PHP 0.1.0 documentation" href="index.html"/>
+        <link rel="prev" title="Quickstart" href="quickstart.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Instagram PHP
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Endpoints</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#media">Media</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#constructor-id">Constructor($id)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#return">Return</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#properties">Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#methods">Methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#get-id">get($id)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#getbyshortcode-shortcode">getByShortcode($shortcode)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#search-latitude-longitude-distance">search($latitude,$longitude,$distance)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#comments">comments()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#comment-text">comment($text)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#deletecomment-id">deleteComment($id)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#likes">likes()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#like">like()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#unlike">unlike()</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#users">Users</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#constructor-id">Constructor($id)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#return">Return</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#properties">Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#methods">Methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#get-id">get($id)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#self">self()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#getmediarecent-count-minid-maxid">getMediaRecent($count,$minId,$maxId)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#selfmediarecent-count-minid-maxid">selfMediaRecent($count,$minId,$maxId)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#selfmedialiked-count-maxlikeid">selfMediaLiked($count,$maxLikeId)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#search-query-count">search($query,$count)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#locations">Locations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#constructor-id">Constructor($id)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#return">Return</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#properties">Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#methods">Methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#get-id">get($id)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#recentmedia-mintagid-maxtagid">recentMedia($minTagId,$maxTagId)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#searchbycoordinates-lat-lng-distance">searchByCoordinates($lat,$lng,$distance)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#searchbyfbplaces-fb-places-id-distance">searchByFbPlaces($fb_places_id,$distance)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#relationships">Relationships</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#constructor">Constructor()</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#return">Return</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#methods">Methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#follows">follows()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#followers">followers()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#followingrequests">followingRequests()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#with">with()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#follow-target">follow($target)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#unfollow-target">unfollow($target)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#approve-target">approve($target)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ignore-target">ignore($target)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#tags">Tags</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#constructor-tagname">Constructor($tagname)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#properties">Properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#return">Return</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#methods">Methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#get-id">get($id)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#recentmedia-count-mintagid-maxtagid">recentMedia($count,$minTagId,$maxTagId)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#search-query">search($query)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#comments-likes">Comments &amp; Likes</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">Instagram PHP</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Endpoints</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/endpoints.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="endpoints">
+<span id="endpoints"></span><h1>Endpoints<a class="headerlink" href="#endpoints" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="media">
+<span id="media"></span><h2>Media<a class="headerlink" href="#media" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="constructor-id">
+<span id="constructor-id"></span><h3>Constructor($id)<a class="headerlink" href="#constructor-id" title="Permalink to this headline">¶</a></h3>
+<p>Initalize a new Media Class with an Id or empty,</p>
+<div class="highlight-php"><div class="highlight"><pre><span></span>    <span class="nv">$media</span> <span class="o">=</span> <span class="nv">$instagram</span><span class="o">-&gt;</span><span class="na">media</span><span class="p">();</span>
+    
+    <span class="c1">// with id set:</span>
+    <span class="nv">$media</span> <span class="o">=</span> <span class="nv">$instagram</span><span class="o">-&gt;</span><span class="na">media</span><span class="p">(</span><span class="mi">123</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="section" id="return">
+<span id="return"></span><h4>Return<a class="headerlink" href="#return" title="Permalink to this headline">¶</a></h4>
+<p><code class="docutils literal"><span class="pre">Media</span></code> Returns new instance of Media Class</p>
+</div>
+</div>
+<div class="section" id="properties">
+<span id="properties"></span><h3>Properties<a class="headerlink" href="#properties" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><strong>id</strong> <code class="docutils literal"><span class="pre">int</span></code> Media_Id</li>
+<li><strong>data</strong> <code class="docutils literal"><span class="pre">StdClass</span></code> <strong>protected</strong> as soon as the object is synced with Instagram by <code class="docutils literal"><span class="pre">get()</span></code> this property holds the response data</li>
+</ul>
+<p>If loaded you can access all properties send by Instagram like:</p>
+<div class="highlight-php"><div class="highlight"><pre><span></span>    <span class="nv">$username</span> <span class="o">=</span> <span class="nv">$media</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">username</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="methods">
+<span id="methods"></span><h3>Methods<a class="headerlink" href="#methods" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="get-id">
+<span id="get-id"></span><h4>get($id)<a class="headerlink" href="#get-id" title="Permalink to this headline">¶</a></h4>
+<p>Saves the result to the public parameter <code class="docutils literal"><span class="pre">data</span></code></p>
+<div class="section" id="parameter">
+<span id="parameter"></span><h5>Parameter<a class="headerlink" href="#parameter" title="Permalink to this headline">¶</a></h5>
+<ul class="simple">
+<li><strong>id</strong> (optional) only if not already set at initalization</li>
+</ul>
+<div class="highlight-php"><div class="highlight"><pre><span></span>    <span class="nv">$media</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="return">
+<span id="id1"></span><h5>Return<a class="headerlink" href="#return" title="Permalink to this headline">¶</a></h5>
+<p><code class="docutils literal"><span class="pre">Media</span></code> Returns itself</p>
+</div>
+</div>
+<div class="section" id="getbyshortcode-shortcode">
+<span id="getbyshortcode-shortcode"></span><h4>getByShortcode($shortcode)<a class="headerlink" href="#getbyshortcode-shortcode" title="Permalink to this headline">¶</a></h4>
+<p>Saves the result to the public parameter <code class="docutils literal"><span class="pre">data</span></code></p>
+<div class="section" id="parameter">
+<span id="id2"></span><h5>Parameter<a class="headerlink" href="#parameter" title="Permalink to this headline">¶</a></h5>
+<ul class="simple">
+<li><strong>shortcode</strong></li>
+</ul>
+<div class="highlight-php"><div class="highlight"><pre><span></span>    <span class="nv">$media</span><span class="o">-&gt;</span><span class="na">getByShortcode</span><span class="p">(</span><span class="nv">$shortcode</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="return">
+<span id="id3"></span><h5>Return<a class="headerlink" href="#return" title="Permalink to this headline">¶</a></h5>
+<p><code class="docutils literal"><span class="pre">Media</span></code> Returns itself</p>
+</div>
+</div>
+<div class="section" id="search-latitude-longitude-distance">
+<span id="search-latitude-longitude-distance"></span><h4>search($latitude,$longitude,$distance)<a class="headerlink" href="#search-latitude-longitude-distance" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="parameter">
+<span id="id4"></span><h5>Parameter<a class="headerlink" href="#parameter" title="Permalink to this headline">¶</a></h5>
+<ul class="simple">
+<li><strong>latitude</strong></li>
+<li><strong>longitude</strong></li>
+<li><strong>distance</strong> (optional)</li>
+</ul>
+<div class="highlight-php"><div class="highlight"><pre><span></span> <span class="nv">$media</span><span class="o">-&gt;</span><span class="na">search</span><span class="p">(</span><span class="nv">$latitude</span><span class="p">,</span><span class="nv">$longitude</span><span class="p">,</span><span class="nv">$distance</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="return">
+<span id="id5"></span><h5>Return<a class="headerlink" href="#return" title="Permalink to this headline">¶</a></h5>
+<p><code class="docutils literal"><span class="pre">Array</span></code> Returns array of Media Objects</p>
+</div>
+</div>
+<div class="section" id="comments">
+<span id="comments"></span><h4>comments()<a class="headerlink" href="#comments" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-php"><div class="highlight"><pre><span></span> <span class="nv">$media</span><span class="o">-&gt;</span><span class="na">comments</span><span class="p">();</span>
+</pre></div>
+</div>
+<div class="section" id="return">
+<span id="id6"></span><h5>Return<a class="headerlink" href="#return" title="Permalink to this headline">¶</a></h5>
+<p><code class="docutils literal"><span class="pre">Array</span></code> Returns array of Comment Objects</p>
+</div>
+</div>
+<div class="section" id="comment-text">
+<span id="comment-text"></span><h4>comment($text)<a class="headerlink" href="#comment-text" title="Permalink to this headline">¶</a></h4>
+<p>Comments on the media object</p>
+<ul class="simple">
+<li><strong>text</strong> Comment text</li>
+</ul>
+<div class="highlight-php"><div class="highlight"><pre><span></span> <span class="nv">$media</span><span class="o">-&gt;</span><span class="na">comment</span><span class="p">(</span><span class="nv">$text</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="section" id="return">
+<span id="id7"></span><h5>Return<a class="headerlink" href="#return" title="Permalink to this headline">¶</a></h5>
+<p><code class="docutils literal"><span class="pre">StdClass</span></code> Returns Comment Object</p>
+</div>
+</div>
+<div class="section" id="deletecomment-id">
+<span id="deletecomment-id"></span><h4>deleteComment($id)<a class="headerlink" href="#deletecomment-id" title="Permalink to this headline">¶</a></h4>
+<p>Delete commment by it&#8217;s comment id</p>
+<ul class="simple">
+<li><strong>$id</strong> Comment Id</li>
+</ul>
+<div class="highlight-php"><div class="highlight"><pre><span></span> <span class="nv">$media</span><span class="o">-&gt;</span><span class="na">deleteComment</span><span class="p">(</span><span class="nv">$id</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="likes">
+<span id="likes"></span><h4>likes()<a class="headerlink" href="#likes" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="parameter">
+<span id="id8"></span><h5>Parameter<a class="headerlink" href="#parameter" title="Permalink to this headline">¶</a></h5>
+<div class="highlight-php"><div class="highlight"><pre><span></span> <span class="nv">$media</span><span class="o">-&gt;</span><span class="na">likes</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="return">
+<span id="id9"></span><h5>Return<a class="headerlink" href="#return" title="Permalink to this headline">¶</a></h5>
+<p><code class="docutils literal"><span class="pre">Array</span></code> Returns array of Like Objects</p>
+</div>
+</div>
+<div class="section" id="like">
+<span id="like"></span><h4>like()<a class="headerlink" href="#like" title="Permalink to this headline">¶</a></h4>
+<p>Likes this media Object by the current authorized user</p>
+<div class="section" id="parameter">
+<span id="id10"></span><h5>Parameter<a class="headerlink" href="#parameter" title="Permalink to this headline">¶</a></h5>
+<div class="highlight-php"><div class="highlight"><pre><span></span> <span class="nv">$media</span><span class="o">-&gt;</span><span class="na">like</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="return">
+<span id="id11"></span><h5>Return<a class="headerlink" href="#return" title="Permalink to this headline">¶</a></h5>
+<p><code class="docutils literal"><span class="pre">StdClass</span></code> Returns Like Object</p>
+</div>
+</div>
+<div class="section" id="unlike">
+<span id="unlike"></span><h4>unlike()<a class="headerlink" href="#unlike" title="Permalink to this headline">¶</a></h4>
+<p>Removes like from this media Object by the current authorized user</p>
+<div class="section" id="parameter">
+<span id="id12"></span><h5>Parameter<a class="headerlink" href="#parameter" title="Permalink to this headline">¶</a></h5>
+<div class="highlight-php"><div class="highlight"><pre><span></span> <span class="nv">$media</span><span class="o">-&gt;</span><span class="na">unlike</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="return">
+<span id="id13"></span><h5>Return<a class="headerlink" href="#return" title="Permalink to this headline">¶</a></h5>
+<p><code class="docutils literal"><span class="pre">StdClass</span></code> Returns Like Object</p>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="users">
+<span id="users"></span><h2>Users<a class="headerlink" href="#users" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="constructor-id">
+<span id="id14"></span><h3>Constructor($id)<a class="headerlink" href="#constructor-id" title="Permalink to this headline">¶</a></h3>
+<p>Initalize a new User Class with an Id or empty,</p>
+<div class="highlight-php"><div class="highlight"><pre><span></span>    <span class="nv">$user</span> <span class="o">=</span> <span class="nv">$instagram</span><span class="o">-&gt;</span><span class="na">user</span><span class="p">();</span>
+    
+    <span class="c1">// with id set:</span>
+    <span class="nv">$user</span> <span class="o">=</span> <span class="nv">$instagram</span><span class="o">-&gt;</span><span class="na">user</span><span class="p">(</span><span class="mi">123</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="section" id="return">
+<span id="id15"></span><h4>Return<a class="headerlink" href="#return" title="Permalink to this headline">¶</a></h4>
+<p><code class="docutils literal"><span class="pre">User</span></code> Returns new instance of User Class</p>
+</div>
+</div>
+<div class="section" id="properties">
+<span id="id16"></span><h3>Properties<a class="headerlink" href="#properties" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><strong>id</strong> <code class="docutils literal"><span class="pre">int</span></code> User_Id</li>
+<li><strong>data</strong> <code class="docutils literal"><span class="pre">StdClass</span></code> <strong>protected</strong> as soon as the object is synced with Instagram by <code class="docutils literal"><span class="pre">get()</span></code> this property holds the response data</li>
+</ul>
+<p>If loaded you can access all properties send by Instagram like:</p>
+<div class="highlight-php"><div class="highlight"><pre><span></span>    <span class="nv">$username</span> <span class="o">=</span> <span class="nv">$user</span><span class="o">-&gt;</span><span class="na">username</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="methods">
+<span id="id17"></span><h3>Methods<a class="headerlink" href="#methods" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="get-id">
+<span id="id18"></span><h4>get($id)<a class="headerlink" href="#get-id" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="properties">
+<span id="id19"></span><h5>Properties<a class="headerlink" href="#properties" title="Permalink to this headline">¶</a></h5>
+<ul class="simple">
+<li><strong>id</strong> only if not already set at initalization</li>
+</ul>
+</div>
+<div class="section" id="return">
+<span id="id20"></span><h5>Return<a class="headerlink" href="#return" title="Permalink to this headline">¶</a></h5>
+<p><code class="docutils literal"><span class="pre">User</span></code> Returns itself</p>
+</div>
+</div>
+<div class="section" id="self">
+<span id="self"></span><h4>self()<a class="headerlink" href="#self" title="Permalink to this headline">¶</a></h4>
+<p>Access authorized user</p>
+<div class="section" id="return">
+<span id="id21"></span><h5>Return<a class="headerlink" href="#return" title="Permalink to this headline">¶</a></h5>
+<p><code class="docutils literal"><span class="pre">User</span></code> Returns itself</p>
+</div>
+</div>
+<div class="section" id="getmediarecent-count-minid-maxid">
+<span id="getmediarecent-count-minid-maxid"></span><h4>getMediaRecent($count,$minId,$maxId)<a class="headerlink" href="#getmediarecent-count-minid-maxid" title="Permalink to this headline">¶</a></h4>
+<p>Requests recent media objects posted by the specified user</p>
+<div class="section" id="parameter">
+<span id="id22"></span><h5>Parameter<a class="headerlink" href="#parameter" title="Permalink to this headline">¶</a></h5>
+<ul class="simple">
+<li><strong>count</strong> (optional)</li>
+<li><strong>minId</strong> (optional)</li>
+<li><strong>maxId</strong> (optional)</li>
+</ul>
+<div class="highlight-php"><div class="highlight"><pre><span></span> <span class="nv">$user</span><span class="o">-&gt;</span><span class="na">getMediaRecent</span><span class="p">(</span><span class="nv">$count</span><span class="p">,</span><span class="nv">$minId</span><span class="p">,</span><span class="nv">$maxId</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="return">
+<span id="id23"></span><h5>Return<a class="headerlink" href="#return" title="Permalink to this headline">¶</a></h5>
+<p><code class="docutils literal"><span class="pre">Array</span></code> Returns array of Media Objects</p>
+</div>
+</div>
+<div class="section" id="selfmediarecent-count-minid-maxid">
+<span id="selfmediarecent-count-minid-maxid"></span><h4>selfMediaRecent($count,$minId,$maxId)<a class="headerlink" href="#selfmediarecent-count-minid-maxid" title="Permalink to this headline">¶</a></h4>
+<p>Requests recent media objects posted by the authorized user</p>
+<div class="section" id="parameter">
+<span id="id24"></span><h5>Parameter<a class="headerlink" href="#parameter" title="Permalink to this headline">¶</a></h5>
+<ul class="simple">
+<li><strong>count</strong> (optional)</li>
+<li><strong>minId</strong> (optional)</li>
+<li><strong>maxId</strong> (optional)</li>
+</ul>
+<div class="highlight-php"><div class="highlight"><pre><span></span> <span class="nv">$user</span><span class="o">-&gt;</span><span class="na">selfMediaRecent</span><span class="p">(</span><span class="nv">$count</span><span class="p">,</span><span class="nv">$minId</span><span class="p">,</span><span class="nv">$maxId</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="return">
+<span id="id25"></span><h5>Return<a class="headerlink" href="#return" title="Permalink to this headline">¶</a></h5>
+<p><code class="docutils literal"><span class="pre">Array</span></code> Returns array of User Objects</p>
+</div>
+</div>
+<div class="section" id="selfmedialiked-count-maxlikeid">
+<span id="selfmedialiked-count-maxlikeid"></span><h4>selfMediaLiked($count,$maxLikeId)<a class="headerlink" href="#selfmedialiked-count-maxlikeid" title="Permalink to this headline">¶</a></h4>
+<p>Requests liked media objects posted by the authorized user</p>
+<div class="section" id="parameter">
+<span id="id26"></span><h5>Parameter<a class="headerlink" href="#parameter" title="Permalink to this headline">¶</a></h5>
+<ul class="simple">
+<li><strong>count</strong> (optional)</li>
+<li><strong>maxLikeId</strong> (optional)</li>
+</ul>
+<div class="highlight-php"><div class="highlight"><pre><span></span> <span class="nv">$user</span><span class="o">-&gt;</span><span class="na">getMediaLiked</span><span class="p">(</span><span class="nv">$count</span><span class="p">,,</span><span class="nv">$maxLikeId</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="return">
+<span id="id27"></span><h5>Return<a class="headerlink" href="#return" title="Permalink to this headline">¶</a></h5>
+<p><code class="docutils literal"><span class="pre">Array</span></code> Returns array of User Objects</p>
+</div>
+</div>
+<div class="section" id="search-query-count">
+<span id="search-query-count"></span><h4>search($query,$count)<a class="headerlink" href="#search-query-count" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="properties">
+<span id="id28"></span><h5>Properties<a class="headerlink" href="#properties" title="Permalink to this headline">¶</a></h5>
+<ul class="simple">
+<li><strong>query</strong> Search query</li>
+<li><strong>count</strong> (optional) Limit result</li>
+</ul>
+</div>
+<div class="section" id="return">
+<span id="id29"></span><h5>Return<a class="headerlink" href="#return" title="Permalink to this headline">¶</a></h5>
+<p><code class="docutils literal"><span class="pre">Array</span></code> Returns array of User Objects</p>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="locations">
+<span id="locations"></span><h2>Locations<a class="headerlink" href="#locations" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="constructor-id">
+<span id="id30"></span><h3>Constructor($id)<a class="headerlink" href="#constructor-id" title="Permalink to this headline">¶</a></h3>
+<p>Initalize a new Location Class with an Id or empty,</p>
+<div class="highlight-php"><div class="highlight"><pre><span></span>    <span class="nv">$location</span> <span class="o">=</span> <span class="nv">$instagram</span><span class="o">-&gt;</span><span class="na">location</span><span class="p">();</span>
+    
+    <span class="c1">// with id set:</span>
+    <span class="nv">$location</span> <span class="o">=</span> <span class="nv">$instagram</span><span class="o">-&gt;</span><span class="na">location</span><span class="p">(</span><span class="mi">123</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="section" id="return">
+<span id="id31"></span><h4>Return<a class="headerlink" href="#return" title="Permalink to this headline">¶</a></h4>
+<p><code class="docutils literal"><span class="pre">Location</span></code> Returns new instance of Location Class</p>
+</div>
+</div>
+<div class="section" id="properties">
+<span id="id32"></span><h3>Properties<a class="headerlink" href="#properties" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><strong>id</strong> <code class="docutils literal"><span class="pre">int</span></code> Location_Id</li>
+<li><strong>data</strong> <code class="docutils literal"><span class="pre">StdClass</span></code> <strong>protected</strong> as soon as the object is synced with Instagram by <code class="docutils literal"><span class="pre">get()</span></code> this property holds the response data</li>
+</ul>
+<p>If loaded you can access all properties send by Instagram like:</p>
+<div class="highlight-php"><div class="highlight"><pre><span></span>    <span class="nv">$latitude</span> <span class="o">=</span> <span class="nv">$location</span><span class="o">-&gt;</span><span class="na">latitude</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="methods">
+<span id="id33"></span><h3>Methods<a class="headerlink" href="#methods" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="get-id">
+<span id="id34"></span><h4>get($id)<a class="headerlink" href="#get-id" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="parameter">
+<span id="id35"></span><h5>Parameter<a class="headerlink" href="#parameter" title="Permalink to this headline">¶</a></h5>
+<ul class="simple">
+<li><strong>id</strong> only if not already set at initalization</li>
+</ul>
+</div>
+<div class="section" id="return">
+<span id="id36"></span><h5>Return<a class="headerlink" href="#return" title="Permalink to this headline">¶</a></h5>
+<p><code class="docutils literal"><span class="pre">Location</span></code> Returns itself</p>
+</div>
+</div>
+<div class="section" id="recentmedia-mintagid-maxtagid">
+<span id="recentmedia-mintagid-maxtagid"></span><h4>recentMedia($minTagId,$maxTagId)<a class="headerlink" href="#recentmedia-mintagid-maxtagid" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="properties">
+<span id="id37"></span><h5>Properties<a class="headerlink" href="#properties" title="Permalink to this headline">¶</a></h5>
+<ul class="simple">
+<li><strong>minTagId</strong> (optional)</li>
+<li><strong>maxTagId</strong> (optional)</li>
+</ul>
+</div>
+<div class="section" id="return">
+<span id="id38"></span><h5>Return<a class="headerlink" href="#return" title="Permalink to this headline">¶</a></h5>
+<p><code class="docutils literal"><span class="pre">Array</span></code> Returns array of <code class="docutils literal"><span class="pre">Media</span></code> Objects</p>
+</div>
+</div>
+<div class="section" id="searchbycoordinates-lat-lng-distance">
+<span id="searchbycoordinates-lat-lng-distance"></span><h4>searchByCoordinates($lat,$lng,$distance)<a class="headerlink" href="#searchbycoordinates-lat-lng-distance" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="properties">
+<span id="id39"></span><h5>Properties<a class="headerlink" href="#properties" title="Permalink to this headline">¶</a></h5>
+<ul class="simple">
+<li><strong>latitude</strong></li>
+<li><strong>longitude</strong></li>
+<li><strong>distance</strong> (optional) Limit radius, default is 500m</li>
+</ul>
+</div>
+<div class="section" id="return">
+<span id="id40"></span><h5>Return<a class="headerlink" href="#return" title="Permalink to this headline">¶</a></h5>
+<p><code class="docutils literal"><span class="pre">Array</span></code> Returns array of Location Objects</p>
+</div>
+</div>
+<div class="section" id="searchbyfbplaces-fb-places-id-distance">
+<span id="searchbyfbplaces-fb-places-id-distance"></span><h4>searchByFbPlaces($fb_places_id,$distance)<a class="headerlink" href="#searchbyfbplaces-fb-places-id-distance" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="properties">
+<span id="id41"></span><h5>Properties<a class="headerlink" href="#properties" title="Permalink to this headline">¶</a></h5>
+<ul class="simple">
+<li><strong>fb_places_id</strong> A Place id issued by Facebook</li>
+<li><strong>distance</strong> (optional) Limit radius, default is 500m</li>
+</ul>
+</div>
+<div class="section" id="return">
+<span id="id42"></span><h5>Return<a class="headerlink" href="#return" title="Permalink to this headline">¶</a></h5>
+<p><code class="docutils literal"><span class="pre">Array</span></code> Returns array of Location Objects</p>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="relationships">
+<span id="relationships"></span><h2>Relationships<a class="headerlink" href="#relationships" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="constructor">
+<span id="constructor"></span><h3>Constructor()<a class="headerlink" href="#constructor" title="Permalink to this headline">¶</a></h3>
+<p>Initalize a new Relationship Class,</p>
+<div class="highlight-php"><div class="highlight"><pre><span></span>    <span class="nv">$relationship</span> <span class="o">=</span> <span class="nv">$instagram</span><span class="o">-&gt;</span><span class="na">relationship</span><span class="p">();</span>
+</pre></div>
+</div>
+<div class="section" id="return">
+<span id="id43"></span><h4>Return<a class="headerlink" href="#return" title="Permalink to this headline">¶</a></h4>
+<p><code class="docutils literal"><span class="pre">Relationship</span></code> Returns new instance of Relationship Class</p>
+</div>
+</div>
+<div class="section" id="methods">
+<span id="id44"></span><h3>Methods<a class="headerlink" href="#methods" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="follows">
+<span id="follows"></span><h4>follows()<a class="headerlink" href="#follows" title="Permalink to this headline">¶</a></h4>
+<p>Returns User the authorized User is following</p>
+<div class="section" id="return">
+<span id="id45"></span><h5>Return<a class="headerlink" href="#return" title="Permalink to this headline">¶</a></h5>
+<p><code class="docutils literal"><span class="pre">Array</span></code> Returns array of User Objects</p>
+</div>
+</div>
+<div class="section" id="followers">
+<span id="followers"></span><h4>followers()<a class="headerlink" href="#followers" title="Permalink to this headline">¶</a></h4>
+<p>Returns User who are following the authorized User</p>
+<div class="section" id="return">
+<span id="id46"></span><h5>Return<a class="headerlink" href="#return" title="Permalink to this headline">¶</a></h5>
+<p><code class="docutils literal"><span class="pre">Array</span></code> Returns array of User Objects</p>
+</div>
+</div>
+<div class="section" id="followingrequests">
+<span id="followingrequests"></span><h4>followingRequests()<a class="headerlink" href="#followingrequests" title="Permalink to this headline">¶</a></h4>
+<p>Returns all open following requests.</p>
+</div>
+<div class="section" id="with">
+<span id="with"></span><h4>with()<a class="headerlink" href="#with" title="Permalink to this headline">¶</a></h4>
+<p>Get information about a relationship to another user. Relationships are expressed using the following terms in the response:
+outgoing_status: Your relationship to the user. Can be &#8216;follows&#8217;, &#8216;requested&#8217;, &#8216;none&#8217;.
+incoming_status: A user&#8217;s relationship to you. Can be &#8216;followed_by&#8217;, &#8216;requested_by&#8217;, &#8216;blocked_by_you&#8217;, &#8216;none&#8217;.</p>
+</div>
+<div class="section" id="follow-target">
+<span id="follow-target"></span><h4>follow($target)<a class="headerlink" href="#follow-target" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="parameters">
+<span id="parameters"></span><h5>Parameters<a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h5>
+<ul class="simple">
+<li><strong>target</strong> Id of user to follow</li>
+</ul>
+</div>
+</div>
+<div class="section" id="unfollow-target">
+<span id="unfollow-target"></span><h4>unfollow($target)<a class="headerlink" href="#unfollow-target" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="parameters">
+<span id="id47"></span><h5>Parameters<a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h5>
+<ul class="simple">
+<li><strong>target</strong> Id of user not to follow anymore</li>
+</ul>
+</div>
+</div>
+<div class="section" id="approve-target">
+<span id="approve-target"></span><h4>approve($target)<a class="headerlink" href="#approve-target" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="parameters">
+<span id="id48"></span><h5>Parameters<a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h5>
+<ul class="simple">
+<li><strong>target</strong> Id of user to approve request</li>
+</ul>
+</div>
+</div>
+<div class="section" id="ignore-target">
+<span id="ignore-target"></span><h4>ignore($target)<a class="headerlink" href="#ignore-target" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="parameters">
+<span id="id49"></span><h5>Parameters<a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h5>
+<ul class="simple">
+<li><strong>target</strong> Id of user to ignore request</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="tags">
+<span id="tags"></span><h2>Tags<a class="headerlink" href="#tags" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="constructor-tagname">
+<span id="constructor-tagname"></span><h3>Constructor($tagname)<a class="headerlink" href="#constructor-tagname" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="properties">
+<span id="id50"></span><h3>Properties<a class="headerlink" href="#properties" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><strong>id</strong> <code class="docutils literal"><span class="pre">int</span></code> Tag name</li>
+<li><strong>data</strong> <code class="docutils literal"><span class="pre">StdClass</span></code> <strong>protected</strong> as soon as the object is synced with Instagram by <code class="docutils literal"><span class="pre">get()</span></code> this property holds the response data</li>
+</ul>
+<p>If loaded you can access all properties send by Instagram like:</p>
+<div class="highlight-php"><div class="highlight"><pre><span></span>    <span class="nv">$media_count</span> <span class="o">=</span> <span class="nv">$tag</span><span class="o">-&gt;</span><span class="na">media_count</span>
+</pre></div>
+</div>
+<p>Initalize a new Tag Class with an Tagname or empty,</p>
+<div class="highlight-php"><div class="highlight"><pre><span></span>    <span class="nv">$tag</span> <span class="o">=</span> <span class="nv">$instagram</span><span class="o">-&gt;</span><span class="na">tag</span><span class="p">();</span>
+    
+    <span class="c1">// with id set:</span>
+    <span class="nv">$tag</span> <span class="o">=</span> <span class="nv">$instagram</span><span class="o">-&gt;</span><span class="na">tag</span><span class="p">(</span><span class="mi">123</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="section" id="return">
+<span id="id51"></span><h4>Return<a class="headerlink" href="#return" title="Permalink to this headline">¶</a></h4>
+<p><code class="docutils literal"><span class="pre">Tag</span></code> Returns new instance of Tag Class</p>
+</div>
+</div>
+<div class="section" id="methods">
+<span id="id52"></span><h3>Methods<a class="headerlink" href="#methods" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="get-id">
+<span id="id53"></span><h4>get($id)<a class="headerlink" href="#get-id" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="parameter">
+<span id="id54"></span><h5>Parameter<a class="headerlink" href="#parameter" title="Permalink to this headline">¶</a></h5>
+<ul class="simple">
+<li><strong>id</strong> only if not already set at initalization</li>
+</ul>
+</div>
+<div class="section" id="return">
+<span id="id55"></span><h5>Return<a class="headerlink" href="#return" title="Permalink to this headline">¶</a></h5>
+<p><code class="docutils literal"><span class="pre">Tag</span></code> Returns itself</p>
+</div>
+</div>
+<div class="section" id="recentmedia-count-mintagid-maxtagid">
+<span id="recentmedia-count-mintagid-maxtagid"></span><h4>recentMedia($count,$minTagId,$maxTagId)<a class="headerlink" href="#recentmedia-count-mintagid-maxtagid" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="parameter">
+<span id="id56"></span><h5>Parameter<a class="headerlink" href="#parameter" title="Permalink to this headline">¶</a></h5>
+<ul class="simple">
+<li><strong>count</strong> (optional)</li>
+<li><strong>minTagId</strong> (optional)</li>
+<li><strong>maxTagId</strong> (optional)</li>
+</ul>
+</div>
+<div class="section" id="return">
+<span id="id57"></span><h5>Return<a class="headerlink" href="#return" title="Permalink to this headline">¶</a></h5>
+<p><code class="docutils literal"><span class="pre">Array</span></code> Returns array of <code class="docutils literal"><span class="pre">Media</span></code> objects</p>
+</div>
+</div>
+<div class="section" id="search-query">
+<span id="search-query"></span><h4>search($query)<a class="headerlink" href="#search-query" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="parameter">
+<span id="id58"></span><h5>Parameter<a class="headerlink" href="#parameter" title="Permalink to this headline">¶</a></h5>
+<ul class="simple">
+<li><strong>query</strong> Search query</li>
+</ul>
+</div>
+<div class="section" id="return">
+<span id="id59"></span><h5>Return<a class="headerlink" href="#return" title="Permalink to this headline">¶</a></h5>
+<p><code class="docutils literal"><span class="pre">Array</span></code> of <code class="docutils literal"><span class="pre">Tag</span></code> Objects</p>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="comments-likes">
+<span id="comments-likes"></span><h2>Comments &amp; Likes<a class="headerlink" href="#comments-likes" title="Permalink to this headline">¶</a></h2>
+<p>Both of these Endpoints are embedded into the Media Class</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="quickstart.html" class="btn btn-neutral" title="Quickstart" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Marvin Osswald.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

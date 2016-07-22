@@ -19,7 +19,7 @@ class Tag {
     /**
      * @var
      */
-    public $data;
+    protected $data;
     /**
      *
      */
@@ -43,7 +43,7 @@ class Tag {
         }
         $res = $this->instagram->get(Tag::API_SEGMENT.$this->tagName);
         $this->data = $res->data;
-        return $res;
+        return $this;
     }
 
     /**
@@ -66,6 +66,44 @@ class Tag {
 
     public function search($query)
     {
-        return $this->instagram->get(Tag::API_SEGMENT.'search',['q' => $query]);
+        $res = $this->instagram->get(Tag::API_SEGMENT.'search',['q' => $query]);
+
+        $arr = [];
+        foreach ($res->data as $item){
+            $tag = new Tag($this->instagram,$item->name);
+            $tag->setData($item);
+            array_push($arr,$tag);
+        }
+        return $arr;
+    }
+    /**
+     * @param $name
+     * @return null
+     */
+    public function __get($name)
+    {
+        if (isset($this->data->{$name})) {
+            return $this->data->{$name};
+        }
+        trigger_error(
+            'Undefined Property for: ' . $name,
+            E_USER_NOTICE);
+        return null;
+    }
+
+    /**
+     * @param $data
+     */
+    public function setData($data)
+    {
+        $this->data = $data;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRawData()
+    {
+        return $this->data;
     }
 }

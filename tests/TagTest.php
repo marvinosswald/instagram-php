@@ -17,7 +17,7 @@ class TagTest extends TestCase{
     public function testGet()
     {
         $res = $this::$instagram->tag('cats')->get();
-        $this->assertEquals('cats',$res->data->name);
+        $this->assertEquals('cats',$res->name);
 
     }
 
@@ -30,6 +30,6 @@ class TagTest extends TestCase{
     public function testSearch()
     {
         $res = $this::$instagram->tag()->search('cats');
-        $this->assertEquals('cats',$res->data[0]->name);
+        $this->assertEquals('cats',$res[0]->name);
     }
 }

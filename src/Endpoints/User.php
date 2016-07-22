@@ -19,7 +19,11 @@ class User {
     /**
      * @var
      */
-    public $data;
+    protected $data;
+    /**
+     * @var stdClass
+     */
+    public $meta;
     /**
      *
      */
@@ -47,7 +51,8 @@ class User {
         }
         $res = $this->instagram->get(User::API_SEGMENT.$this->id);
         $this->data = $res->data;
-        return $res;
+        $this->meta = $res->meta;
+        return $this;
     }
 
     /**
@@ -57,34 +62,72 @@ class User {
     {
         $res = $this->instagram->get(User::API_SEGMENT.'self');
         $this->data = $res->data;
-        return $res;
+        $this->meta = $res->meta;
+        return $this;
     }
 
     /**
-     * @param array $params
+     * @param string $count
+     * @param string $minId
+     * @param string $maxId
      * @return mixed|\Psr\Http\Message\ResponseInterface
      */
-    public function getMediaRecent(array $params=[])
+    public function getMediaRecent($count='',$minId='',$maxId='')
     {
-        return $this->instagram->get(User::API_SEGMENT.$this->id.'/media/recent',$params);
+        $res = $this->instagram->get(User::API_SEGMENT.$this->id.'/media/recent',[
+            'count' => $count,
+            'min_id' => $minId,
+            'max_id' => $maxId
+        ]);
+        $arr = [];
+        foreach ($res->data as $item){
+            $media = new Media($this->instagram,$item->id);
+            $media->setData($item);
+            array_push($arr,$media);
+        }
+        return $arr;
     }
 
     /**
-     * @param array $params
+     * @param string $count
+     * @param string $minId
+     * @param string $maxId
      * @return mixed|\Psr\Http\Message\ResponseInterface
      */
-    public function selfMediaRecent(array $params = [])
+    public function selfMediaRecent($count='',$minId='',$maxId='')
     {
-        return $this->instagram->get(User::API_SEGMENT.'self/media/recent',$params);
+        $res = $this->instagram->get(User::API_SEGMENT.'self/media/recent',[
+            'count' => $count,
+            'min_id' => $minId,
+            'max_id' => $maxId
+        ]);
+        $arr = [];
+        foreach ($res->data as $item){
+            $media = new Media($this->instagram,$item->id);
+            $media->setData($item);
+            array_push($arr,$media);
+        }
+        return $arr;
     }
 
     /**
-     * @param array $params
+     * @param string $count
+     * @param string $maxLikeId
      * @return mixed|\Psr\Http\Message\ResponseInterface
      */
-    public function selfMediaLiked(array $params=[])
+    public function selfMediaLiked($count = '',$maxLikeId='')
     {
-        return $this->instagram->get(User::API_SEGMENT.'self/media/liked',$params);
+        $res = $this->instagram->get(User::API_SEGMENT.'self/media/liked',[
+            'count' => $count,
+            'max_like_id' => $maxLikeId
+        ]);
+        $arr = [];
+        foreach ($res->data as $item){
+            $media = new Media($this->instagram,$item->id);
+            $media->setData($item);
+            array_push($arr,$media);
+        }
+        return $arr;
     }
 
     /**
@@ -94,9 +137,47 @@ class User {
      */
     public function search($q,$count = false)
     {
-        return $this->instagram->get(User::API_SEGMENT.'search',[
+        $res = $this->instagram->get(User::API_SEGMENT.'search',[
             'q' => $q,
             'count' => $count ?: ''
         ]);
+        $arr = [];
+        foreach ($res->data as $item){
+            $user = new User($this->instagram,$item->id);
+            $user->setData($item);
+            array_push($arr,$user);
+        }
+        return $arr;
+    }
+
+    /**
+     * @param $name
+     * @return null
+     */
+    public function __get($name)
+    {
+        if (isset($this->data->{$name})) {
+            return $this->data->{$name};
+        }
+        trigger_error(
+            'Undefined Property for: ' . $name,
+            E_USER_NOTICE);
+        return null;
+    }
+
+    /**
+     * @param $data
+     */
+    public function setData($data)
+    {
+        $this->data = $data;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRawData()
+    {
+        return $this->data;
     }
 }

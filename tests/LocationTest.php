@@ -24,7 +24,7 @@ class LocationTest extends TestCase{
     public function testRecentMedia()
     {
         $res = $this::$instagram->location(213385402)->recentMedia();
-        $this->assertEquals(200,$res->meta->code);
+        $this->assertInternalType('array',$res);
     }
 
     public function testSearchByFbPlacesId()

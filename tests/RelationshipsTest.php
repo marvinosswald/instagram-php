@@ -11,7 +11,7 @@ class RelationshipsTest extends TestCase{
             $dotenv = new Dotenv\Dotenv(__DIR__."/../");
             $dotenv->load();
         }
-        self::$instagram = new \marvinosswald\Instagram\Instagram(getenv('INSTAGRAM_ACCESS_TOKEN'));
+        self::$instagram = new \marvinosswald\Instagram\Instagram(['accessToken' => getenv('INSTAGRAM_ACCESS_TOKEN')]);
     }
     public function testFollows()
     {

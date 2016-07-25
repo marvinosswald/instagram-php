@@ -15,9 +15,29 @@ class Instagram {
      */
     const API_URL = 'https://api.instagram.com/v1/';
     /**
+     *
+     */
+    const OAUTH_URL = 'https://api.instagram.com/oauth/authorize/';
+    /**
+     *
+     */
+    const ACCESS_TOKEN_URL = 'https://api.instagram.com/oauth/access_token';
+    /**
      * @var string
      */
     protected $accessToken = '';
+    /**
+     * @var string
+     */
+    protected $clientId = '';
+    /**
+     * @var string
+     */
+    protected $clientSecret = '';
+    /**
+     * @var mixed|string
+     */
+    protected $redirectUri = '';
     /**
      * @var Client
      */
@@ -26,13 +46,18 @@ class Instagram {
      * @var Media
      */
     public $media;
+
     /**
      * Instagram constructor.
-     * @param $accessToken
+     * @param array $params
      */
-    public function __construct($accessToken)
+    public function __construct(array $params)
     {
-        $this->accessToken = $accessToken;
+        $this->accessToken = array_key_exists('accessToken',$params) ? $params['accessToken'] : '';
+        $this->clientId = array_key_exists('clientId',$params) ? $params['clientId'] : '';
+        $this->clientSecret = array_key_exists('clientSecret',$params) ? $params['clientSecret'] : '';
+        $this->redirectUri = array_key_exists('redirectUri',$params) ? $params['redirectUri'] : '';
+
         $this->client = new Client([
             'base_uri' => Instagram::API_URL
         ]);
@@ -115,5 +140,63 @@ class Instagram {
     public function location($id = '')
     {
         return new Location($this,$id);
+    }
+
+    /**
+     * @param array $scopes
+     * @return string
+     * @throws \Exception
+     */
+    public function getLoginUrl(array $scopes = [])
+    {
+        if(!$this->clientId){
+            throw new \Exception("You need to set your client_id (clientId)");
+        }
+        if (!$this->redirectUri){
+            throw new \Exception("You need to set a redirect URI (redirectUri)");
+        }
+        $url = Instagram::OAUTH_URL.'?client_id='.$this->clientId.'&redirect_uri='.$this->redirectUri.'&response_type=code';
+        if ($scopes){
+            $scopeParam = '&scope=';
+            foreach ($scopes as $i => $scope){
+                if ($i > 0){
+                    $scopeParam .= '+'.$scope;
+                }else{
+                    $scopeParam .= $scope;
+                }
+
+            }
+            $url .= $scopeParam;
+        }
+        return $url;
+    }
+
+    /**
+     * @param $code
+     * @return string
+     * @throws \Exception
+     */
+    public function getAccessToken($code)
+    {
+        if(!$this->clientId){
+            throw new \Exception("You need to set your client_id (clientId)");
+        }
+        if(!$this->clientSecret){
+            throw new \Exception("You need to set your client_secret (clientSecret)");
+        }
+        if (!$this->redirectUri){
+            throw new \Exception("You need to set a redirect URI (redirectUri)");
+        }
+        $client = new Client();
+        $res = $client->post(Instagram::ACCESS_TOKEN_URL,['form_params' => [
+            'client_id' => $this->clientId,
+            'client_secret' => $this->clientSecret,
+            'grant_type' => 'authorization_code',
+            'redirect_uri' => $this->redirectUri,
+            'code' => $code
+        ]]);
+        $body = (string) $res->getBody();
+        $this->accessToken = $body->access_token;
+        return $this->accessToken;
     }
 }

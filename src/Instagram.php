@@ -50,9 +50,9 @@ class Instagram {
     /**
      * Instagram constructor.
      * @param array $params
-     * @param array $requestOptions
+     * @param array $config
      */
-    public function __construct(array $params, array $requestOptions = [])
+    public function __construct(array $params, array $config = [])
     {
         $this->accessToken = array_key_exists('accessToken',$params) ? $params['accessToken'] : '';
         $this->clientId = array_key_exists('clientId',$params) ? $params['clientId'] : '';
@@ -61,7 +61,7 @@ class Instagram {
 
         $this->client = new Client(array_merge([
             'base_uri' => Instagram::API_URL
-        ], $requestOptions));
+        ], $config));
         $this->relationships = new Relationships($this);
     }
 

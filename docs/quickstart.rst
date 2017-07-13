@@ -28,18 +28,18 @@ Creating a Client
         'redirectUri' => 'your-redirect-uri'
     ]
 
-    $requestOptions = [
+    $config = [
         'allow_redirects' => false
         'http_errors' => false
         ...
     ];
 
-    $instagram = new Instagram($params,$requestOptions);
+    $instagram = new Instagram($params, $config);
 
 
 The client constructor accepts two arrays :
     - $params
-    - $requestOptions who can contain all GuzzleHttp\Client request options see : http://docs.guzzlephp.org/en/stable/request-options.html
+    - $config who can contain all GuzzleHttp\Client request options see : http://docs.guzzlephp.org/en/stable/request-options.html
 
 Access Media Endpoint
 ---------------------

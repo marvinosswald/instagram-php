@@ -38,7 +38,10 @@ class Tag {
 
     public function get($tagName = '')
     {
-        return $this->instagram->get(Tag::API_SEGMENT.$tagName);
+        if($tagName){
+            $this->tagName = $tagName;
+        }
+        return $this->instagram->get(Tag::API_SEGMENT.$this->tagName);
     }
 
     /**

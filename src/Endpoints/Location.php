@@ -58,7 +58,6 @@ class location {
         if(!$this->id){
             return "No Location id set";
         }
-
         return $this->instagram->get(Location::API_SEGMENT.$this->id.'/media/recent',[
             'min_tag_id' => $minTagId,
             'max_tag_id' => $maxTagId
@@ -92,7 +91,6 @@ class location {
             'distance' => $distance
         ]);
     }
-
     /**
      * @param $name
      * @return null

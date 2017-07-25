@@ -44,9 +44,12 @@ class User {
      * @param $id
      * @return mixed|\Psr\Http\Message\ResponseInterface
      */
-    public function get($id)
+    public function get($id = false)
     {
-        return $this->instagram->get(User::API_SEGMENT.$id);
+        if($id){
+            $this->id = $id;
+        }
+        return $this->instagram->get(User::API_SEGMENT.$this->id);
     }
 
     /**

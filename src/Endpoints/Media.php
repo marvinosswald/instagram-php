@@ -45,9 +45,7 @@ class Media {
         if ($id){
             $this->id = $id;
         }
-        $res = $this->instagram->get(Media::API_SEGMENT.$this->id);
-        $this->data = $res->data;
-        return $this;
+        return $this->instagram->get(Media::API_SEGMENT.$this->id);
     }
 
     /**
@@ -56,10 +54,7 @@ class Media {
      */
     public function getByShortcode($shortcode)
     {
-        $res = $this->instagram->get(Media::API_SEGMENT.'shortcode/'.$shortcode);
-        $this->id = $res->data->id;
-        $this->data = $res->data;
-        return $this;
+        return $this->instagram->get(Media::API_SEGMENT.'shortcode/'.$shortcode);
     }
 
     /**
@@ -76,6 +71,7 @@ class Media {
             'distance' => $distance
         ]);
     }
+
     /**
      * @return mixed|\Psr\Http\Message\ResponseInterface
      */

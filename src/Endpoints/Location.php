@@ -45,10 +45,7 @@ class location {
         if ($id){
             $this->id = $id;
         }
-        $res = $this->instagram->get(Location::API_SEGMENT.$this->id);
-        $this->data = $res->data;
-        $this->meta = $res->meta;
-        return $this;
+        return $this->instagram->get(Location::API_SEGMENT.$this->id);
     }
 
     /**
@@ -61,17 +58,11 @@ class location {
         if(!$this->id){
             return "No Location id set";
         }
-        $res = $this->instagram->get(Location::API_SEGMENT.$this->id.'/media/recent',[
+
+        return $this->instagram->get(Location::API_SEGMENT.$this->id.'/media/recent',[
             'min_tag_id' => $minTagId,
             'max_tag_id' => $maxTagId
         ]);
-        $arr = [];
-        foreach ($res->data as $item){
-            $tag = new Media($this->instagram,$item->id);
-            $tag->setData($item);
-            array_push($arr,$tag);
-        }
-        return $arr;
     }
 
     /**
@@ -82,18 +73,11 @@ class location {
      */
     public function searchByCoordinates($lat, $lng, $distance=500)
     {
-        $res = $this->instagram->get(Location::API_SEGMENT.'search',[
+        return $this->instagram->get(Location::API_SEGMENT.'search',[
             'lat' => $lat,
             'lng' => $lng,
             'distance' => $distance
         ]);
-        $arr = [];
-        foreach ($res->data as $item){
-            $tag = new Location($this->instagram,$item->id);
-            $tag->setData($item);
-            array_push($arr,$tag);
-        }
-        return $arr;
     }
 
     /**
@@ -103,18 +87,12 @@ class location {
      */
     public function searchByFbPlacesId($fb_places_id='',$distance=500)
     {
-        $res = $this->instagram->get(Location::API_SEGMENT.'search',[
+        return $this->instagram->get(Location::API_SEGMENT.'search',[
             'facebook_places_id' => $fb_places_id,
             'distance' => $distance
         ]);
-        $arr = [];
-        foreach ($res->data as $item){
-            $tag = new Location($this->instagram,$item->id);
-            $tag->setData($item);
-            array_push($arr,$tag);
-        }
-        return $arr;
     }
+
     /**
      * @param $name
      * @return null

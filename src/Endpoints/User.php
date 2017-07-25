@@ -44,15 +44,9 @@ class User {
      * @param $id
      * @return mixed|\Psr\Http\Message\ResponseInterface
      */
-    public function get($id = false)
+    public function get($id)
     {
-        if($id){
-            $this->id = $id;
-        }
-        $res = $this->instagram->get(User::API_SEGMENT.$this->id);
-        $this->data = $res->data;
-        $this->meta = $res->meta;
-        return $this;
+        return $this->instagram->get(User::API_SEGMENT.$id);
     }
 
     /**
@@ -60,10 +54,7 @@ class User {
      */
     public function self()
     {
-        $res = $this->instagram->get(User::API_SEGMENT.'self');
-        $this->data = $res->data;
-        $this->meta = $res->meta;
-        return $this;
+        return $this->instagram->get(User::API_SEGMENT.'self');
     }
 
     /**
@@ -74,18 +65,11 @@ class User {
      */
     public function getMediaRecent($count='',$minId='',$maxId='')
     {
-        $res = $this->instagram->get(User::API_SEGMENT.$this->id.'/media/recent',[
+        return $this->instagram->get(User::API_SEGMENT.$this->id.'/media/recent',[
             'count' => $count,
             'min_id' => $minId,
             'max_id' => $maxId
         ]);
-        $arr = [];
-        foreach ($res->data as $item){
-            $media = new Media($this->instagram,$item->id);
-            $media->setData($item);
-            array_push($arr,$media);
-        }
-        return $arr;
     }
 
     /**
@@ -96,18 +80,11 @@ class User {
      */
     public function selfMediaRecent($count='',$minId='',$maxId='')
     {
-        $res = $this->instagram->get(User::API_SEGMENT.'self/media/recent',[
+        return $this->instagram->get(User::API_SEGMENT.'self/media/recent',[
             'count' => $count,
             'min_id' => $minId,
             'max_id' => $maxId
         ]);
-        $arr = [];
-        foreach ($res->data as $item){
-            $media = new Media($this->instagram,$item->id);
-            $media->setData($item);
-            array_push($arr,$media);
-        }
-        return $arr;
     }
 
     /**
@@ -117,17 +94,10 @@ class User {
      */
     public function selfMediaLiked($count = '',$maxLikeId='')
     {
-        $res = $this->instagram->get(User::API_SEGMENT.'self/media/liked',[
+        return $this->instagram->get(User::API_SEGMENT.'self/media/liked',[
             'count' => $count,
             'max_like_id' => $maxLikeId
         ]);
-        $arr = [];
-        foreach ($res->data as $item){
-            $media = new Media($this->instagram,$item->id);
-            $media->setData($item);
-            array_push($arr,$media);
-        }
-        return $arr;
     }
 
     /**
@@ -137,17 +107,10 @@ class User {
      */
     public function search($q,$count = false)
     {
-        $res = $this->instagram->get(User::API_SEGMENT.'search',[
+        return $this->instagram->get(User::API_SEGMENT.'search',[
             'q' => $q,
             'count' => $count ?: ''
         ]);
-        $arr = [];
-        foreach ($res->data as $item){
-            $user = new User($this->instagram,$item->id);
-            $user->setData($item);
-            array_push($arr,$user);
-        }
-        return $arr;
     }
 
     /**

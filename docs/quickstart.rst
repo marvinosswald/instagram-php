@@ -21,10 +21,25 @@ Creating a Client
 
     use marvinosswald\Instagram\Instagram;
 
-    $instagram = new Instagram(ACCESS_TOKEN);
+    $params = [
+        'accessToken' => 'your-access-token',
+        'clientId' => 'your-client-id'
+        'clientSecret' => 'your-client-secret',
+        'redirectUri' => 'your-redirect-uri'
+    ]
+
+    $config = [
+        'allow_redirects' => false
+        'http_errors' => false
+        ...
+    ];
+
+    $instagram = new Instagram($params, $config);
 
 
-The client constructor accepts an ACCESS_TOKEN string
+The client constructor accepts two arrays :
+    - $params
+    - $config who can contain all GuzzleHttp\Client request options see : http://docs.guzzlephp.org/en/stable/request-options.html
 
 Access Media Endpoint
 ---------------------

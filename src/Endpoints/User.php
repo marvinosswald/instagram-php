@@ -50,7 +50,9 @@ class User {
             $this->id = $id;
         }
         $res = $this->instagram->get(User::API_SEGMENT.$this->id);
-        $this->data = $res->data;
+        if (isset($res->data)) {
+            $this->data = $res->data;
+        }
         $this->meta = $res->meta;
         return $this;
     }

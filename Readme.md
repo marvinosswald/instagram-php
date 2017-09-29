@@ -15,6 +15,14 @@
 ## Dependencies
 - Guzzle
 
+## Install and run test
+    $ git clone https://github.com/Headoo/instagram-php.git
+    $ cd instagram-php
+    $ composer install
+    $ ./vendor/phpunit/phpunit/phpunit
+    
+
+
 ## [Documentation](http://instagram-php-sdk.readthedocs.io/en/latest/)
 I'm like the worst writer ever... So please feel free to improve it !
 

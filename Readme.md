@@ -16,7 +16,7 @@
 - Guzzle
 
 ## Install and run test
-    $ git clone https://github.com/Headoo/instagram-php.git
+    $ git clone https://github.com/marvinosswald/instagram-php.git
     $ cd instagram-php
     $ composer install
     $ ./vendor/phpunit/phpunit/phpunit

@@ -21,6 +21,8 @@
     $ composer install
     $ ./vendor/phpunit/phpunit/phpunit
     
+## Laravel
+Starting from Laravel 5.5 you can easily install this package with composer and Package Discovery will pick it up. 
 
 
 ## [Documentation](http://instagram-php-sdk.readthedocs.io/en/latest/)

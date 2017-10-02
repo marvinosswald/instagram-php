@@ -52,7 +52,7 @@ class Instagram {
      * @param array $params
      * @param array $config
      */
-    public function __construct(array $params, array $config = [])
+    public function __construct(array $params = [], array $config = [])
     {
         $this->accessToken = array_key_exists('accessToken',$params) ? $params['accessToken'] : '';
         $this->clientId = array_key_exists('clientId',$params) ? $params['clientId'] : '';

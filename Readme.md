@@ -15,6 +15,16 @@
 ## Dependencies
 - Guzzle
 
+## Install and run test
+    $ git clone https://github.com/marvinosswald/instagram-php.git
+    $ cd instagram-php
+    $ composer install
+    $ ./vendor/phpunit/phpunit/phpunit
+    
+## Laravel
+Starting from Laravel 5.5 you can easily install this package with composer and Package Discovery will pick it up. 
+
+
 ## [Documentation](http://instagram-php-sdk.readthedocs.io/en/latest/)
 I'm like the worst writer ever... So please feel free to improve it !
 

@@ -1,6 +1,8 @@
 <?php
 
-use \PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestCase;
+use GuzzleHttp\Exception\ClientException;
+use marvinosswald\Instagram\Instagram;
 
 class UserTest extends TestCase{
     protected static $instagram;
@@ -11,7 +13,7 @@ class UserTest extends TestCase{
             $dotenv = new Dotenv\Dotenv(__DIR__."/../");
             $dotenv->load();
         }
-        self::$instagram = new \marvinosswald\Instagram\Instagram(['accessToken' => getenv('INSTAGRAM_ACCESS_TOKEN')]);
+        self::$instagram = new Instagram(['accessToken' => getenv('INSTAGRAM_ACCESS_TOKEN')]);
     }
     public function testSelf()
     {
@@ -34,6 +36,24 @@ class UserTest extends TestCase{
         $res = $this::$instagram->user()->get('299054539')->data->username;
         $this->assertEquals(getenv('INSTAGRAM_USERNAME'),$res);
     }
+
+    public function testGetClientException()
+    {
+        $this->expectException(ClientException::class);
+        $res = $this::$instagram->user()->get('1');
+    }
+
+
+    public function testGetAPIError400()
+    {
+        $instagram = new Instagram(['accessToken' => getenv('INSTAGRAM_ACCESS_TOKEN')], ['http_errors' => false]);
+        $res = $instagram->user()->get('1');
+        $this->assertEquals($res->meta->code,'400');
+        $this->assertInternalType('string', $res->meta->error_type);
+        $this->assertInternalType('string', $res->meta->error_message);
+    }
+
+
     public function testGetMediaRecent()
     {
         $res = $this::$instagram->user('299054539')->getMediaRecent()->data[0]->user->username;

@@ -52,7 +52,7 @@ class Instagram {
      * @param array $params
      * @param array $config
      */
-    public function __construct(array $params, array $config = [])
+    public function __construct(array $params = [], array $config = [])
     {
         $this->accessToken = array_key_exists('accessToken',$params) ? $params['accessToken'] : '';
         $this->clientId = array_key_exists('clientId',$params) ? $params['clientId'] : '';
@@ -68,10 +68,14 @@ class Instagram {
     /**
      * @param $uri
      * @param array $params
-     * @return mixed|\Psr\Http\Message\ResponseInterface
+     * @return mixed
+     * @throws \Exception
      */
     public function get($uri,$params = [])
     {
+        if(!$this->accessToken){
+            throw new \Exception("No accessToken set");
+        }
         $client = $this->client->request('GET',$uri,['query' => array_merge([
             'access_token' => $this->accessToken
         ],$params)]);
@@ -82,10 +86,14 @@ class Instagram {
     /**
      * @param $uri
      * @param array $params
-     * @return mixed|\Psr\Http\Message\ResponseInterface
+     * @return mixed
+     * @throws \Exception
      */
     public function post($uri,$params = [])
     {
+        if(!$this->accessToken){
+            throw new \Exception("No accessToken set");
+        }
         $client = $this->client->request('POST',$uri,['form_params' => array_merge([
             'access_token' => $this->accessToken
         ],$params)]);
@@ -97,9 +105,13 @@ class Instagram {
      * @param $uri
      * @param array $params
      * @return mixed
+     * @throws \Exception
      */
     public function delete($uri,$params = [])
     {
+        if(!$this->accessToken){
+            throw new \Exception("No accessToken set");
+        }
         $client = $this->client->request('DELETE',$uri,['query' => array_merge([
             'access_token' => $this->accessToken
         ],$params)]);

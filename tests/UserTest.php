@@ -33,8 +33,8 @@ class UserTest extends TestCase{
     }
     public function testGet()
     {
-        $res = $this::$instagram->user()->get('299054539')->data->username;
-        $this->assertEquals(getenv('INSTAGRAM_USERNAME'),$res);
+        $res = $this::$instagram->user()->get('45913985')->data->username;
+        $this->assertEquals('marv_____',$res);
     }
 
     public function testGetClientException()
@@ -56,12 +56,12 @@ class UserTest extends TestCase{
 
     public function testGetMediaRecent()
     {
-        $res = $this::$instagram->user('299054539')->getMediaRecent()->data[0]->user->username;
-        $this->assertEquals(getenv('INSTAGRAM_USERNAME'),$res);
+        $res = $this::$instagram->user('45913985')->getMediaRecent()->data[0]->user->username;
+        $this->assertEquals('marv_____',$res);
     }
     public function testSearch()
     {
-        $res = $this::$instagram->user()->search(getenv('INSTAGRAM_SEARCH'))->data[0]->username;
-        $this->assertEquals(getenv('INSTAGRAM_SEARCH'),$res);
+        $res = $this::$instagram->user()->search("marv_____")->data[0]->username;
+        $this->assertEquals("marv_____",$res);
     }
 }

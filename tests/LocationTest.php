@@ -17,25 +17,25 @@ class LocationTest extends TestCase{
     public function testGet()
     {
         $res = $this::$instagram->location(213385402)->get();
-        $this->assertEquals(213385402,$res->id);
+        $this->assertEquals(213385402,$res->data->id);
 
     }
 
     public function testRecentMedia()
     {
         $res = $this::$instagram->location(213385402)->recentMedia();
-        $this->assertInternalType('array',$res);
+        $this->assertEquals(200,$res->meta->code);
     }
 
     public function testSearchByFbPlacesId()
     {
         $res = $this::$instagram->location()->searchByFbPlacesId('106078429431815');
-        $this->assertEquals(213385402,$res[0]->id);
+        $this->assertEquals(213385402,$res->data[0]->id);
     }
 
     public function testSearchByCoordinates()
     {
         $res = $this::$instagram->location()->searchByCoordinates('51.518732','-0.129756');
-        $this->assertEquals(213385402,$res[2]->id);
+        $this->assertEquals(213385402,$res->data[2]->id);
     }
 }

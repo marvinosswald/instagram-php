@@ -17,12 +17,12 @@ class MediaTest extends TestCase{
     public function testGet()
     {
         $res = $this::$instagram->media('503364100596583201_45913985')->get();
-        $this->assertEquals('503364100596583201_45913985',$res->id);
+        $this->assertEquals('503364100596583201_45913985',$res->data->id);
     }
     public function testGetByShortcode()
     {
         $res = $this::$instagram->media()->getByShortcode('b8TvuIvksh');
-        $this->assertEquals('503364100596583201_45913985',$res->id);
+        $this->assertEquals('503364100596583201_45913985',$res->data->id);
     }
 
     public function testGetLikes()

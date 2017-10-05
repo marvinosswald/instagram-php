@@ -16,33 +16,32 @@ class UserTest extends TestCase{
     public function testSelf()
     {
         $res = $this::$instagram->user()->self();
-        $this->assertEquals('marv_____',$res->username);
+        $this->assertEquals(getenv('INSTAGRAM_USERNAME'),$res->data->username);
     }
     public function testSelfMediaRecent()
     {
         $res = $this::$instagram->user()->selfMediaRecent();
-        $this->assertEquals('marv_____',$res[0]->user->username);
+        $this->assertEquals(getenv('INSTAGRAM_USERNAME'),$res->data[0]->user->username);
     }
     public function testSelfMediaLiked()
     {
         $res = $this::$instagram->user()->selfMediaLiked();
 
-        $this->assertInternalType('array',$res);
+        $this->assertInstanceOf('stdClass',$res);
     }
     public function testGet()
     {
-        $res = $this::$instagram->user()->get('45913985')->username;
-        $this->assertEquals('marv_____',$res);
+        $res = $this::$instagram->user()->get('299054539')->data->username;
+        $this->assertEquals(getenv('INSTAGRAM_USERNAME'),$res);
     }
     public function testGetMediaRecent()
     {
-        $res = $this::$instagram->user('45913985')->getMediaRecent()[0]->user->username;
-        $this->assertEquals('marv_____',$res);
+        $res = $this::$instagram->user('299054539')->getMediaRecent()->data[0]->user->username;
+        $this->assertEquals(getenv('INSTAGRAM_USERNAME'),$res);
     }
-
     public function testSearch()
     {
-        $res = $this::$instagram->user()->search('marv_____');
-        $this->assertEquals('marv_____', $res[0]->username);
+        $res = $this::$instagram->user()->search(getenv('INSTAGRAM_SEARCH'))->data[0]->username;
+        $this->assertEquals(getenv('INSTAGRAM_SEARCH'),$res);
     }
 }

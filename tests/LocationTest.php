@@ -1,6 +1,8 @@
 <?php
 
 use \PHPUnit\Framework\TestCase;
+use GuzzleHttp\Exception\ClientException;
+use marvinosswald\Instagram\Instagram;
 
 class LocationTest extends TestCase{
     protected static $instagram;
@@ -11,7 +13,7 @@ class LocationTest extends TestCase{
             $dotenv = new Dotenv\Dotenv(__DIR__."/../");
             $dotenv->load();
         }
-        self::$instagram = new \marvinosswald\Instagram\Instagram(['accessToken' => getenv('INSTAGRAM_ACCESS_TOKEN')]);
+        self::$instagram = new Instagram(['accessToken' => getenv('INSTAGRAM_ACCESS_TOKEN')]);
     }
 
     public function testGet()
@@ -37,5 +39,18 @@ class LocationTest extends TestCase{
     {
         $res = $this::$instagram->location()->searchByCoordinates('51.518732','-0.129756');
         $this->assertEquals(213385402,$res->data[2]->id);
+    }
+    public function testGetClientException()
+    {
+        $this->expectException(ClientException::class);
+        $this::$instagram->location(12345)->get();
+    }
+    public function testGetAPIError400()
+    {
+        $instagram = new Instagram(['accessToken' => getenv('INSTAGRAM_ACCESS_TOKEN')], ['http_errors' => false]);
+        $res = $instagram->location(12345)->get();
+        $this->assertEquals($res->meta->code,'400');
+        $this->assertInternalType('string', $res->meta->error_type);
+        $this->assertInternalType('string', $res->meta->error_message);
     }
 }

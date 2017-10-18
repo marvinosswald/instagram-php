@@ -41,9 +41,7 @@ class Tag {
         if($tagName){
             $this->tagName = $tagName;
         }
-        $res = $this->instagram->get(Tag::API_SEGMENT.$this->tagName);
-        $this->data = $res->data;
-        return $this;
+        return $this->instagram->get(Tag::API_SEGMENT.$this->tagName);
     }
 
     /**
@@ -66,16 +64,9 @@ class Tag {
 
     public function search($query)
     {
-        $res = $this->instagram->get(Tag::API_SEGMENT.'search',['q' => $query]);
-
-        $arr = [];
-        foreach ($res->data as $item){
-            $tag = new Tag($this->instagram,$item->name);
-            $tag->setData($item);
-            array_push($arr,$tag);
-        }
-        return $arr;
+        return $this->instagram->get(Tag::API_SEGMENT.'search',['q' => $query]);
     }
+    
     /**
      * @param $name
      * @return null

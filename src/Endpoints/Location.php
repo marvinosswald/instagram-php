@@ -7,7 +7,7 @@ use marvinosswald\Instagram\Instagram;
  * Class Media
  * @package marvinosswald\Instagram
  */
-class location {
+class Location {
     /**
      * @var Instagram
      */

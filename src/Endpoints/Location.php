@@ -49,18 +49,18 @@ class Location {
     }
 
     /**
-     * @param string $minTagId
-     * @param string $maxTagId
+     * @param string $minId
+     * @param string $maxId
      * @return mixed|\Psr\Http\Message\ResponseInterface|string
      */
-    public function recentMedia($minTagId='',$maxTagId='')
+    public function recentMedia($minId = '', $maxId = '')
     {
         if(!$this->id){
             return "No Location id set";
         }
         return $this->instagram->get(Location::API_SEGMENT.$this->id.'/media/recent',[
-            'min_tag_id' => $minTagId,
-            'max_tag_id' => $maxTagId
+            'min_id' => $minId,
+            'max_id' => $maxId
         ]);
     }
 
@@ -70,7 +70,7 @@ class Location {
      * @param int $distance
      * @return mixed|\Psr\Http\Message\ResponseInterface
      */
-    public function searchByCoordinates($lat, $lng, $distance=500)
+    public function searchByCoordinates($lat, $lng, $distance = 500)
     {
         return $this->instagram->get(Location::API_SEGMENT.'search',[
             'lat' => $lat,
@@ -84,7 +84,7 @@ class Location {
      * @param int $distance
      * @return mixed|\Psr\Http\Message\ResponseInterface
      */
-    public function searchByFbPlacesId($fb_places_id='',$distance=500)
+    public function searchByFbPlacesId($fb_places_id = '', $distance = 500)
     {
         return $this->instagram->get(Location::API_SEGMENT.'search',[
             'facebook_places_id' => $fb_places_id,

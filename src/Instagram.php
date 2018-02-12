@@ -208,8 +208,9 @@ class Instagram {
             'redirect_uri' => $this->redirectUri,
             'code' => $code
         ]]);
-        $body = (string) $res->getBody();
-        $this->accessToken = $body->access_token;
-        return $this->accessToken;
+
+        $json = json_decode((string) $res->getBody());
+        $this->accessToken = $json->access_token;
+        return $json;
     }
 }
